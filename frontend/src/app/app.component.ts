@@ -13,4 +13,6 @@ import { CoinService } from './coin.service';
 export class AppComponent{
 
   title = 'frontend';
+
+  
 }

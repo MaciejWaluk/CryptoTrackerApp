@@ -45,9 +45,17 @@ export class CoinService {
     return this.http.get(`${environment.coinApiUrl}/${symbol}/${currency}`, this.requestCoinApiOptions).pipe(
       catchError((error) => {
         console.error('Error fetching price:', error);
-        return of('Not available');
+        return of('Coin not found');
       })
     );
-    
+  }
+
+  public getCoin(symbol: string){
+    return this.http.get(`https://rest.coinapi.io/v1/assets/${symbol}`, this.requestCoinApiOptions).pipe(
+      catchError((error) => {
+        console.error('Error fetching coin:', error);
+        return of('Coin not found');
+      })
+    );
   }
 }

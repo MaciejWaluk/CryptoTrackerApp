@@ -11,9 +11,14 @@ import { Cryptocurrency } from 'src/models/Cryptocurrency';
 })
 export class AddCoinFormComponent {
 
+  
+
   @Output() coinAdded: EventEmitter<Cryptocurrency> = new EventEmitter<Cryptocurrency>();
 
   constructor(private coinService: CoinService){}
+
+  public coinExistsMessage = '';
+  public existsButtonClicked: boolean = false;
 
 
 
@@ -42,6 +47,32 @@ export class AddCoinFormComponent {
     } else {
       console.error('Invalid circulatingSupply or totalSupply value.');
     }
+  }
+
+  ifCoinExists(){
+
+    this.existsButtonClicked = true;
+
+    const symbol = this.coinForm.get('coinSymbol')!.value as string;
+    if(symbol === ''){
+      this.coinExistsMessage = 'Please enter a symbol';
+      return;
+    }
+    this.coinService.getCoin(symbol).subscribe((data: any) => {  
+      if(data.length > 0 && data[0].asset_id === symbol ){
+        this.coinExistsMessage = `This coin exists, it's name is: ${data[0].name}`;
+      }
+      else{
+        this.coinExistsMessage = "This coin does not exist";
+      }
+    });
+
+  }
+
+  resetForm(){
+    this.coinForm.reset();
+    this.coinExistsMessage = '';
+    this.existsButtonClicked = false;
   }
 
 

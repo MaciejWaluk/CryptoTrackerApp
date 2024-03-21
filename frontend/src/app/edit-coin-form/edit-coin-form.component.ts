@@ -17,6 +17,10 @@ export class EditCoinFormComponent {
   @Output() coinUpdated: EventEmitter<Cryptocurrency> = new EventEmitter<Cryptocurrency>();
   @Output() editCanceled: EventEmitter<void> = new EventEmitter<void>();
 
+  public coinExistsMessage = '';
+  public existsButtonClicked: boolean = false;
+
+
   constructor(private coinService: CoinService){}
 
 
@@ -62,6 +66,32 @@ export class EditCoinFormComponent {
 
   editCancelClicked(){
     this.editCanceled.emit();
+  }
+
+  ifCoinExists(){
+
+    this.existsButtonClicked = true;
+
+    const symbol = this.coinForm.get('coinSymbol')!.value as string;
+    if(symbol === ''){
+      this.coinExistsMessage = 'Please enter a symbol';
+      return;
+    }
+    this.coinService.getCoin(symbol).subscribe((data: any) => {  
+      if(data.length > 0 && data[0].asset_id === symbol ){
+        this.coinExistsMessage = `This coin exists, it's name is: ${data[0].name}`;
+      }
+      else{
+        this.coinExistsMessage = "This coin does not exist";
+      }
+    });
+
+  }
+
+  resetForm(){
+    this.coinForm.reset();
+    this.coinExistsMessage = '';
+    this.existsButtonClicked = false;
   }
 
 }
