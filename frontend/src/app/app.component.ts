@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../environment/environment';
+import { environment } from '../environments/environment';
 import { Cryptocurrency } from 'src/models/Cryptocurrency';
 import { CoinService } from './coin.service';
 
