@@ -44,6 +44,8 @@ export class AddCoinFormComponent {
       this.coinService.createCryptocurrency(newCoin).subscribe((data: any) => {
         this.coinAdded.emit(data);
       });
+
+      this.resetForm();
     } else {
       console.error('Invalid circulatingSupply or totalSupply value.');
     }
