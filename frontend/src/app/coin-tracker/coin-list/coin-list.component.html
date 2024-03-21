@@ -1,8 +1,4 @@
-<button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-    Add coin
-  </button>
-  
-  <!-- Modal -->
+<div >
   <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -23,11 +19,19 @@
     </div>
   </div>
   
+  <div>
+
+    <div class="flex">
+      <h1 class="ms-3 mb-3">CoinTracker</h1>
+      <button type="button" class="btn btn-dark btn-sm ms-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+        Add coin
+      </button>
+    </div>
   
-  <div class="container d-flex justify-content-center">
-    <div class="d-flex flex-wrap">
-      <div *ngFor="let coin of cryptocurrencies">
-        <app-coin-list-item [coin]="coin" (deleteClicked)="handleCoinDeleted($event)" (editClicked)="handleEditClicked($event)" ></app-coin-list-item>
-      </div>
+    <div *ngFor="let coin of cryptocurrencies">
+      <app-coin-list-item [coin]="coin" (deleteClicked)="handleCoinDeleted($event)" (editClicked)="handleEditClicked($event)" ></app-coin-list-item>
     </div>
   </div>
+
+  
+</div>
