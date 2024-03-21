@@ -1,0 +1,33 @@
+<button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+    Add coin
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{ isEditing ? 'Edit' : 'Add' }} a coin</h1>
+        </div>
+        <div class="modal-body">
+            <ng-container *ngIf="!isEditing; else editForm">
+                <app-add-coin-form (coinAdded)="handleCoinAdded($event)"></app-add-coin-form>
+            </ng-container>
+            <ng-template #editForm >
+                <ng-container *ngIf="editCoinData">
+                    <app-edit-coin-form [coin]="editCoinData" (coinUpdated)="handleCoinUpdated($event)" (editCanceled)="handleEditCanceled()"></app-edit-coin-form>
+                </ng-container>
+            </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="container d-flex justify-content-center">
+    <div class="d-flex flex-wrap">
+      <div *ngFor="let coin of cryptocurrencies">
+        <app-coin-list-item [coin]="coin" (deleteClicked)="handleCoinDeleted($event)" (editClicked)="handleEditClicked($event)" ></app-coin-list-item>
+      </div>
+    </div>
+  </div>
