@@ -1,4 +1,4 @@
-<form [formGroup]="coinForm" (ngSubmit)="$event.preventDefault(); updateCoin()" >
+<form [formGroup]="coinForm" (ngSubmit)="$event.preventDefault();  handleForm()" >
     <div class="mb-3">
       <label for="coinName" class="form-label">Name</label>
       <input type="text" formControlName="coinName" class="form-control" id="coinName" >
@@ -33,7 +33,7 @@
         <small class="text-dark mt-3" *ngIf="existsButtonClicked">{{coinExistsMessage}}</small>
     </div>
     <div class="d-flex gap-2 justify-content-end">
-        <button type="submit" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal" [disabled]="coinForm.invalid" >Save changes</button>
+        <button type="submit" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal" [disabled]="coinForm.invalid" >{{ coin ? 'Update coin' : 'Add coin' }}</button>
         <button type="button" class="btn btn-outline-dark btn-sm" (click)="ifCoinExists()">Check if token exists</button>
         <button type="button" class="btn btn-outline-dark btn-sm" data-bs-dismiss="modal" (click)="editCancelClicked()">Close</button>    
     </div>

@@ -7,11 +7,12 @@
         </div>
         <div class="modal-body">
             <ng-container *ngIf="!isEditing; else editForm">
-                <app-add-coin-form (coinAdded)="handleCoinAdded($event)"></app-add-coin-form>
+                <!-- <app-add-coin-form (coinAdded)="handleCoinAdded($event)"></app-add-coin-form> -->
+                <app-coin-form (coinAdded)="handleCoinAdded($event)"></app-coin-form>
             </ng-container>
             <ng-template #editForm >
                 <ng-container *ngIf="editCoinData">
-                    <app-edit-coin-form [coin]="editCoinData" (coinUpdated)="handleCoinUpdated($event)" (editCanceled)="handleEditCanceled()"></app-edit-coin-form>
+                    <app-coin-form [coin]="editCoinData" (coinUpdated)="handleCoinUpdated($event)" (editCanceled)="handleEditCanceled()"></app-coin-form>
                 </ng-container>
             </ng-template>
         </div>
@@ -20,18 +21,15 @@
   </div>
   
   <div>
-
-    <div class="flex">
-      <h1 class="ms-3 mb-3">CoinTracker</h1>
-      <button type="button" class="btn btn-dark btn-sm ms-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+    <div class="border-bottom border-dark border-3 pb-2 mb-3 ms-3">
+      <h1 class=" mb-3">CoinTracker</h1>
+      <button type="button" class="btn btn-dark mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >
         Add coin
       </button>
     </div>
   
-    <div *ngFor="let coin of cryptocurrencies">
-      <app-coin-list-item [coin]="coin" (deleteClicked)="handleCoinDeleted($event)" (editClicked)="handleEditClicked($event)" ></app-coin-list-item>
+    <div style="display:flex; flex-wrap: wrap; column-gap: 5%;">
+        <app-coin-list-item *ngFor="let coin of cryptocurrencies" [coin]="coin" (deleteClicked)="handleCoinDeleted($event)" (editClicked)="handleEditClicked($event)" ></app-coin-list-item>
     </div>
   </div>
-
-  
 </div>

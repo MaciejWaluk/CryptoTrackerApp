@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoinListItemComponent } from './coin-list-item/coin-list-item.component';
-import { AddCoinFormComponent } from './add-coin-form/add-coin-form.component';
 import { CoinListComponent } from './coin-list/coin-list.component';
-import { EditCoinFormComponent } from './edit-coin-form/edit-coin-form.component';
+import { CoinFormComponent } from './coin-form/coin-form.component';
 
 
 
@@ -15,9 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     CoinListItemComponent,
-    AddCoinFormComponent,
     CoinListComponent,
-    EditCoinFormComponent,
+    CoinFormComponent,
 
   ],
   imports: [
@@ -27,9 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     CoinListItemComponent,
-    AddCoinFormComponent,
     CoinListComponent,
-    EditCoinFormComponent,
+    CoinFormComponent,
   ]
 })
 export class CoinTrackerModule { }

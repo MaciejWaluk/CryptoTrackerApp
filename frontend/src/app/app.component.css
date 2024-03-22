@@ -13,10 +13,26 @@
     background-color: #DEE2E6;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+  
 .wrapper{
-    width: 80%;
-    height: 80%;
-    overflow-y: scroll;
+    width: 85%;
+    height: 85%;
+    overflow-y: auto;
     background-color: #FFFFFF;
 }
 
