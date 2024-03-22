@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cryptocurrency } from 'src/models/Cryptocurrency';
 import { CoinService } from '../coin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-coin-list',
@@ -12,7 +13,7 @@ export class CoinListComponent implements OnInit {
   isEditing: boolean = false;
   editCoinData: Cryptocurrency | null = null;
 
-  constructor(private coinService: CoinService) {}
+  constructor(private coinService: CoinService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.coinService.getCryptocurrencies().subscribe((data: any) => {
@@ -21,12 +22,30 @@ export class CoinListComponent implements OnInit {
   }
 
   handleCoinAdded(data: any) {
-    this.cryptocurrencies.push(data);
+    var existingCoin = this.cryptocurrencies.find((coin) => coin.symbol === data.symbol);
+
+    if (existingCoin) {
+      this.toastr.error('Coin already exists', "", {
+        positionClass: "toast-bottom-center"
+      });
+    }
+    else{
+      this.cryptocurrencies.push(data);
+      this.toastr.success('Coin added', "", {
+        positionClass: "toast-bottom-center"
+      });
+
+    }
+
   }
   handleCoinDeleted(data: any) {
     this.cryptocurrencies = this.cryptocurrencies.filter(
       (coin) => coin.id !== data.id
     );
+
+    this.toastr.success('Coin deleted', "", {
+      positionClass: "toast-bottom-center"
+    });
   }
 
   handleEditClicked(data: any) {
@@ -42,6 +61,10 @@ export class CoinListComponent implements OnInit {
       this.cryptocurrencies[index] = updatedCoin;
     }
     this.isEditing = false;
+
+    this.toastr.success('Coin updated', "", {
+      positionClass: "toast-bottom-center"
+    });
   }
 
   handleEditCanceled() {
