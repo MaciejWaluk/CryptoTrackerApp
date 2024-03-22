@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cryptocurrency } from 'src/models/Cryptocurrency';
 import { CoinService } from '../coin.service';
-import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-coin-list-item',
