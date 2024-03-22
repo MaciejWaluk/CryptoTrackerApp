@@ -1,14 +1,14 @@
 <div class="m-3 p-4 rounded rounded-2 shadow">
   <div class="centerDiv">
     <div>
-      <h3>{{ coin.symbol }}</h3>
+      <h3>{{ coin.name }}</h3>
     </div>
-    <div class="mb-2">
-      <h5>{{ coin.name }}</h5>
+    <div class="mb-4 ">
+      <h5 class="fw-normal">{{ coin.symbol }}</h5>
     </div>
-    <p>Price: {{ priceData }}</p>
-    <p>Circulating supply: {{ coin.circulatingSupply }}</p>
-    <p>Total supply: {{ coin.totalSupply }}</p>
+    <p><span class="fw-bold">Price: </span>{{ priceData }}</p>
+    <p><span class="fw-bold">Circulating supply: </span>{{ coin.circulatingSupply }}</p>
+    <p><span class="fw-bold">Total supply: </span>{{ coin.totalSupply }}</p>
     <div class="d-flex buttons gap-2">
       <button class="btn btn-outline-dark" (click)="getPrice()">
         Get price

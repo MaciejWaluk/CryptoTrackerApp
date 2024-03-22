@@ -14,7 +14,7 @@ export class CoinListItemComponent implements OnInit {
   @Output() editClicked: EventEmitter<Cryptocurrency> =
     new EventEmitter<Cryptocurrency>();
 
-  priceData: any = 'N/A';
+  priceData: any = 'Click "Get price"';
 
   constructor(private coinService: CoinService) {}
   ngOnInit(): void {}
