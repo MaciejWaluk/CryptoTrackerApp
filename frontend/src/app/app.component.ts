@@ -4,15 +4,11 @@ import { environment } from '../environment/environment';
 import { Cryptocurrency } from 'src/models/Cryptocurrency';
 import { CoinService } from './coin-tracker/coin.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent{
-
+export class AppComponent {
   title = 'frontend';
-
-  
 }

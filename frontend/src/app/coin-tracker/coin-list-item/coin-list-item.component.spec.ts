@@ -8,7 +8,7 @@ describe('CoinListItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CoinListItemComponent]
+      declarations: [CoinListItemComponent],
     });
     fixture = TestBed.createComponent(CoinListItemComponent);
     component = fixture.componentInstance;

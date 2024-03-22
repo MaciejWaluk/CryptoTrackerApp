@@ -6,40 +6,38 @@ import { catchError } from 'rxjs';
 @Component({
   selector: 'app-coin-list-item',
   templateUrl: './coin-list-item.component.html',
-  styleUrls: ['./coin-list-item.component.css']
+  styleUrls: ['./coin-list-item.component.css'],
 })
-export class CoinListItemComponent implements OnInit{
-
-  @Input() coin! : Cryptocurrency;
-  @Output() deleteClicked: EventEmitter<Cryptocurrency> = new EventEmitter<Cryptocurrency>();
-  @Output() editClicked: EventEmitter<Cryptocurrency> = new EventEmitter<Cryptocurrency>();
+export class CoinListItemComponent implements OnInit {
+  @Input() coin!: Cryptocurrency;
+  @Output() deleteClicked: EventEmitter<Cryptocurrency> =
+    new EventEmitter<Cryptocurrency>();
+  @Output() editClicked: EventEmitter<Cryptocurrency> =
+    new EventEmitter<Cryptocurrency>();
 
   priceData: any = 'N/A';
-  
 
-  constructor(private coinService: CoinService) { }
-  ngOnInit(): void {    
-  }
+  constructor(private coinService: CoinService) {}
+  ngOnInit(): void {}
 
-
-  removeCoin(){
+  removeCoin() {
     this.coinService.deleteCryptocurrency(this.coin.id).subscribe(() => {
       this.deleteClicked.emit(this.coin);
-    })
+    });
   }
 
-  editCoin(){
+  editCoin() {
     this.editClicked.emit(this.coin);
   }
 
-  getPrice(){
-    this.coinService.getPrice(this.coin.symbol, 'USD').subscribe((data: any) => {
-      if(typeof data === 'string'){
-        this.priceData = data;
-      }
-      this.priceData = "$" + data.rate.toFixed(2).replace('.', ',');
-    })
+  getPrice() {
+    this.coinService
+      .getPrice(this.coin.symbol, 'USD')
+      .subscribe((data: any) => {
+        if (typeof data === 'string') {
+          this.priceData = data;
+        }
+        this.priceData = '$' + data.rate.toFixed(2).replace('.', ',');
+      });
   }
-
-  
 }

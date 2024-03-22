@@ -4,8 +4,6 @@ import { CoinListItemComponent } from './coin-list-item/coin-list-item.component
 import { CoinListComponent } from './coin-list/coin-list.component';
 import { CoinFormComponent } from './coin-form/coin-form.component';
 
-
-
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
