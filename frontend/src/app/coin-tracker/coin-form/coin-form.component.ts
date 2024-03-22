@@ -145,6 +145,7 @@ export class CoinFormComponent {
     this.coinService.getCoin(symbol).subscribe((data: any) => {
       if (data.length > 0 && data[0].asset_id === symbol) {
         this.coinExistsMessage = `This coin exists, it's name is: ${data[0].name}`;
+        this.coinForm.patchValue({coinName: data[0].name})
       } else {
         this.coinExistsMessage = 'This coin does not exist';
       }
