@@ -61,6 +61,11 @@ namespace backend.Services
             {
                 return false;
             }
+            if(cryptocurrency.circulatingSupply > cryptocurrency.totalSupply)
+            {
+                return false;
+            }
+
             return true;
         }   
     }
